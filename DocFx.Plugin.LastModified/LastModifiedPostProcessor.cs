@@ -61,7 +61,9 @@ namespace DocFx.Plugin.LastModified
                         // truncate to 200 in case of huge commit body
                         var commitBody = commitInfo.Message.Truncate(300);
                         Logger.LogVerbose($"Writing {lastModified} with reason for {outputPath}...");
-                        WriteModifiedDate(outputPath, lastModified, commitHeader, commitBody);
+                        WriteModifiedDate(outputPath, lastModified);
+
+                        // WriteModifiedDate(outputPath, lastModified, commitHeader, commitBody);
                         continue;
                     }
                 }
@@ -95,8 +97,9 @@ namespace DocFx.Plugin.LastModified
                 return;
             }
 
+            var lastModifiedDate = modifiedDate.ToString("MMM d, yyyy");
             var paragraphNode = htmlDoc.CreateElement("p");
-            paragraphNode.InnerHtml = $"This page was last modified at {modifiedDate} (UTC).";
+            paragraphNode.InnerHtml = $"Last Updated: {modifiedDate}";
             var separatorNode = htmlDoc.CreateElement("hr");
             articleNode.AppendChild(separatorNode);
             articleNode.AppendChild(paragraphNode);
