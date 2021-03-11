@@ -99,7 +99,7 @@ namespace DocFx.Plugin.LastModified
 
             var lastModifiedDate = modifiedDate.ToString("MMM d, yyyy");
             var paragraphNode = htmlDoc.CreateElement("p");
-            paragraphNode.InnerHtml = $"Last Updated: {modifiedDate}";
+            paragraphNode.InnerHtml = $"Last Updated: {lastModifiedDate}";
             var separatorNode = htmlDoc.CreateElement("hr");
             articleNode.AppendChild(separatorNode);
             articleNode.AppendChild(paragraphNode);
